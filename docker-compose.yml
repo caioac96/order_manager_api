@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    command: yarn start
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+      - rabbitmq
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/orders
+      - RABBITMQ_URL=amqp://rabbitmq
+    volumes:
+      - .:/app
+
+  mongo:
+    image: mongo:6
+    ports:
+      - "27017:27017"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
