@@ -4,6 +4,8 @@ import env from './config/env.js';
 import routes from './infrastructure/http/routes.js';
 import logger from './utils/logger.js';
 import { serverConnections } from './container.js';
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./swagger.js";
 
 const app = express();
 
@@ -14,6 +16,8 @@ app.get('/health', (req, res) => {
     logger.info('Server running!');
     res.status(200).json({ status: 'Server running!' });
 });
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 async function startServer() {
     try {

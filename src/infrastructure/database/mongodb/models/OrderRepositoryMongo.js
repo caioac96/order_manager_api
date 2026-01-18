@@ -16,7 +16,7 @@ export default class OrderRepositoryMongo extends OrderRepository {
   }
 
   async findAll() {
-    const docs = await OrderModel.find().lean();
+    const docs = await OrderModel.find().sort({ createdAt: -1 }).lean();
 
     return docs.map(doc =>
       new Order({
