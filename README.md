@@ -27,3 +27,15 @@ Com Docker:
 ```
 - Esse processo pode demorar alguns minutos, e irá: criar e inicializar os containers Docker, executar o healthcheck do MongoDB e do RabbitMQ, instalar as dependências do projeto, iniciar a API.
 - Com a API já em execução, qualquer dúvida sobre documentação, poderá consultar o endpoint: http://localhost:3000/api-docs - abrirá o Swagger da API.
+
+## Escalabilidade - Order Manager API [PT-BR]:
+A escalabilidade pode ser implementada de duas formas (inicialmente), horizontal e vertical.
+
+- Na arquitetura horizontal poderíamos implementar um load balancer, como o NGINX, e disponibilizar várias instâncias da mesma API. O NGINX fazendo a gestão e distribuindo o tráfego dos dados;
+
+- Na arquitetura vertical poderíamos aumentar a capacidade dos recursos mesmo. Pensando na AWS, por exemplo, poderíamos aumentar a memória RAM, CPU, disco/armazenamento do servidor responsável por armazenar nossa API. Porém, poderia ter o impacto negativo de custo aumentado.
+
+
+## Arquitetura - Order Manager API [PT-BR]:
+
+![Diagrama de Arquitetura](src/utils/images/diagrama_de_componentes.png)
