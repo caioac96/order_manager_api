@@ -10,9 +10,9 @@ const required = (key) => {
 const env = {
     nodeEnv: process.env.NODE_ENV || 'development',
     port: Number(process.env.PORT) || 3000,
-    // mongo: {
-    //     url: required('MONGO_URL')
-    // },
+    mongo: {
+        url: required('MONGO_URL')
+    },
     // rabbitmq: {
     //     url: required('RABBITMQ_URL')
     // }

@@ -3,6 +3,10 @@ export default class OrderRepository {
     throw new Error('Not implemented');
   }
 
+  findAll(id) {
+    throw new Error('Not implemented');
+  }
+
   findById(id) {
     throw new Error('Not implemented');
   }

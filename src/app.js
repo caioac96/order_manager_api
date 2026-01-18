@@ -18,11 +18,10 @@ app.get('/health', (req, res) => {
 
 async function startServer() {
     try {
-        // TODO: Ajustar conexão com banco, colocando no docker
-        // await mongoose.connect(env.mongo.url, {
-        //     serverSelectionTimeoutMS: 5000
-        // });
-        // logger.info('MongoDB connected');
+        await mongoose.connect(env.mongo.url, {
+            serverSelectionTimeoutMS: 5000
+        });
+        logger.info('MongoDB connected');
 
         // TODO: Ajustar conexão com rabbit
         // const rabbitPublisher = new RabbitPublisher();

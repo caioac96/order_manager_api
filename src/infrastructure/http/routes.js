@@ -1,19 +1,23 @@
 import { Router } from 'express';
-import OrderController from './controllers/OrderController.js';
+import { makeOrderController } from './factory.js';
 
 const router = Router();
-const orderController = new OrderController();
+const orderController = makeOrderController();
 
-router.post('/orders', (req, res, next) =>
-    orderController.create(req, res, next)
+router.post('/orders', (req, res) =>
+  orderController.create(req, res)
 );
 
-router.get('/orders/:id', (req, res, next) =>
-    orderController.getStatus(req, res, next)
+router.get('/orders', (req, res) =>
+  orderController.getOrders(req, res)
 );
 
-router.put('/orders/:id/status', (req, res, next) =>
-    orderController.updateStatus(req, res, next)
+router.get('/orders/:id', (req, res) =>
+  orderController.getStatus(req, res)
+);
+
+router.patch('/orders/:id/status', (req, res) =>
+  orderController.updateStatus(req, res)
 );
 
 export default router;
