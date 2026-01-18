@@ -1,7 +1,4 @@
-module.exports = {
-  testEnvironment: 'node',
-  collectCoverageFrom: [
-    'src/**/*.js',
-    '!src/infrastructure/**'
-  ]
+export default {
+  testEnvironment: "node",
+  transform: {},
 };

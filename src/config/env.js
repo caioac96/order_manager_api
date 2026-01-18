@@ -11,10 +11,14 @@ const env = {
     nodeEnv: process.env.NODE_ENV || 'development',
     port: Number(process.env.PORT) || 3000,
     mongo: {
-        url: required('MONGO_URL')
+        user: required('MONGO_USER'),
+        pwd: required('MONGO_PASSWORD'),
+        host: required('MONGO_HOST')
     },
     rabbitmq: {
-        url: required('RABBITMQ_URL')
+        user: required('RABBIT_USER'),
+        pwd: required('RABBIT_PASSWORD'),
+        host: required('RABBIT_HOST')
     }
 };
 

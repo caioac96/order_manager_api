@@ -1,6 +1,4 @@
 import express from 'express';
-
-import env from './config/env.js';
 import routes from './infrastructure/http/routes.js';
 import logger from './utils/logger.js';
 import { serverConnections } from './container.js';
@@ -22,9 +20,6 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 async function startServer() {
     try {
         await serverConnections();
-        app.listen(env.port, () => {
-            logger.log(`Running on port: ${env.port}`);
-        });
     } catch (error) {
         logger.error('Error run application.', error);
         process.exit(1);

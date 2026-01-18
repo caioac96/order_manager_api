@@ -23,7 +23,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "test": "jest --coverage",
+    "test": "set NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles && jest",
     "lint": "eslint src"
   },
   "engines": {

@@ -19,7 +19,7 @@ export default class UpdateOrderStatus {
 
       return order;
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 }

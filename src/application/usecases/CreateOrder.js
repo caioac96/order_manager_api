@@ -32,7 +32,7 @@ export default class CreateOrder {
 
             return savedOrder
         } catch (error) {
-            throw new Error(error);
+            throw error;
         }
     }
 }
