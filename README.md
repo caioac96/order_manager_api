@@ -25,9 +25,5 @@ Com Docker:
 ```bash
   docker compose up --build
 ```
-- Esse processo pode demorar alguns minutos, e irá;
---Criar e inicializar os containers Docker;
---Executar o healthcheck do MongoDB e do RabbitMQ;
---Instalar as dependências do projeto;
---Iniciar a API.
+- Esse processo pode demorar alguns minutos, e irá: criar e inicializar os containers Docker, executar o healthcheck do MongoDB e do RabbitMQ, instalar as dependências do projeto, iniciar a API.
 - Com a API já em execução, qualquer dúvida sobre documentação, poderá consultar o endpoint: http://localhost:3000/api-docs - abrirá o Swagger da API.
