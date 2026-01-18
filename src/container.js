@@ -18,6 +18,6 @@ export async function serverConnections() {
     logger.info('RabbitMQ connected');
 
     app.listen(env.PORT, () => {
-        console.log(`Server running on port ${env.PORT}`);
+        logger.info(`Server running on port ${env.port}`);
     });
 }
