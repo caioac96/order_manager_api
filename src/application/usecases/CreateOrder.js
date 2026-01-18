@@ -6,29 +6,33 @@ export default class CreateOrder {
     }
 
     async execute(createOrderRequest) {
-        this.orderService.validateItems(createOrderRequest.items)
+        try {
+            this.orderService.validateItems(createOrderRequest.items)
 
-        const totalPrice = this.orderService.calculateTotalPrice(
-            createOrderRequest.items
-        )
+            const totalPrice = this.orderService.calculateTotalPrice(
+                createOrderRequest.items
+            )
 
-        const totalQuantity = this.orderService.calculateTotalQuantity(
-            createOrderRequest.items
-        )
+            const totalQuantity = this.orderService.calculateTotalQuantity(
+                createOrderRequest.items
+            )
 
-        const order = {
-            // customerId: createOrderRequest.customerId,
-            items: createOrderRequest.items,
-            totalPrice,
-            totalQuantity,
-            status: 'CREATED',
-            createdAt: new Date()
+            const order = {
+                // customerId: createOrderRequest.customerId,
+                items: createOrderRequest.items,
+                totalPrice,
+                totalQuantity,
+                status: 'CREATED',
+                createdAt: new Date()
+            }
+
+            const savedOrder = await this.orderRepository.save(order)
+
+            await this.eventPublisher.orderCreated(savedOrder);
+
+            return savedOrder
+        } catch (error) {
+            throw new Error(error);
         }
-
-        const savedOrder = await this.orderRepository.save(order)
-
-        // TODO: await this.eventPublisher.publish('OrderCreated', savedOrder)
-
-        return savedOrder
     }
 }

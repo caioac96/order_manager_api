@@ -1,6 +1,9 @@
 export default class OrderEventPublisher {
-  // TODO: ajustar eventos
-  publishStatusChanged(order) {
-    throw new Error('Not implemented');
+  async orderCreated(order) {
+    throw new Error(`${this.constructor.name} must implement orderCreated()`);
+  }
+
+  async orderStatusUpdated(order) {
+    throw new Error(`${this.constructor.name} must implement orderStatusUpdated()`);
   }
 }

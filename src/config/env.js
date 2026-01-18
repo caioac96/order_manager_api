@@ -13,9 +13,9 @@ const env = {
     mongo: {
         url: required('MONGO_URL')
     },
-    // rabbitmq: {
-    //     url: required('RABBITMQ_URL')
-    // }
+    rabbitmq: {
+        url: required('RABBITMQ_URL')
+    }
 };
 
 export default env;

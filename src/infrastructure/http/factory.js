@@ -8,8 +8,7 @@ import UpdateOrderStatus from '../../application/usecases/UpdateOrderStatus.js';
 import OrderService from '../../domain/services/OrderService.js';
 
 import OrderRepositoryMongo from '../database/mongodb/models/OrderRepositoryMongo.js';
-import OrderEventPublisher from '../../domain/events/OrderEventPublisher.js';
-import RabbitPublisher from '../messaging/RabbitPublisher.js';
+import { rabbitPublisher } from '../../container.js';
 
 export function makeOrderController() {
   // services
@@ -19,8 +18,7 @@ export function makeOrderController() {
   const orderRepository = new OrderRepositoryMongo();
 
   // events
-  const rabbitPublisher = new RabbitPublisher();
-  const eventPublisher = new OrderEventPublisher(rabbitPublisher);
+  const eventPublisher = rabbitPublisher;
 
   // usecases
   const createOrderUseCase = new CreateOrder({

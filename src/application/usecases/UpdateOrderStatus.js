@@ -6,16 +6,20 @@ export default class UpdateOrderStatus {
   }
 
   async execute({ orderId, status }) {
-    this.orderService.isValidIdOrder(orderId);
+    try {
+      this.orderService.isValidIdOrder(orderId);
 
-    const order = await this.orderRepository.findById(orderId)
-    if (!order) throw new Error('Order not found');
+      const order = await this.orderRepository.findById(orderId)
+      if (!order) throw new Error('Order not found');
 
-    order.updateStatus(status);
-    await this.orderRepository.updateStatus(orderId, status);
+      order.updateStatus(status);
+      await this.orderRepository.updateStatus(orderId, status);
 
-    // TODO: await this.eventPublisher.publishStatusChanged(order);
+      await this.eventPublisher.orderStatusUpdated(order);
 
-    return order;
+      return order;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

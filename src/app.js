@@ -1,10 +1,9 @@
 import express from 'express';
-import mongoose from 'mongoose';
 
 import env from './config/env.js';
 import routes from './infrastructure/http/routes.js';
-import RabbitPublisher from './infrastructure/messaging/RabbitPublisher.js';
 import logger from './utils/logger.js';
+import { serverConnections } from './container.js';
 
 const app = express();
 
@@ -18,18 +17,7 @@ app.get('/health', (req, res) => {
 
 async function startServer() {
     try {
-        await mongoose.connect(env.mongo.url, {
-            serverSelectionTimeoutMS: 5000
-        });
-        logger.info('MongoDB connected');
-
-        // TODO: Ajustar conexão com rabbit
-        // const rabbitPublisher = new RabbitPublisher();
-        // await rabbitPublisher.connect(env.rabbitmq.url);
-        // logger.info('RabbitMQ connected');
-
-        // app.locals.eventPublisher = rabbitPublisher;
-
+        await serverConnections();
         app.listen(env.port, () => {
             logger.log(`Running on port: ${env.port}`);
         });
